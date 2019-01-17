@@ -1,0 +1,20 @@
+{{#link-to "homepage"}}
+  Back to Home
+{{/link-to}}
+
+{{#if cities.length}}
+  {{#list-of-cities cities}}
+  {{/list-of-cities}}
+{{else}}
+  <div style="margin: 2rem 0">
+    <button type="button" {{action "preloadDefaultCities"}}>Preload default Cities</button>
+  </div>
+{{/if}}
+
+<form class="form-add-city" {{action "addNewCity" on="submit"}}>
+  <div>
+    <label for="name" class="control-label">New City:</label>
+    {{input type="text" value=model.cityName required=true}}
+    <button type="submit">Add</button>
+  </div>
+</form>

@@ -7,6 +7,11 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('city', function() {
+    this.route('sunrise-sunset', { path: '/:city_name/sunrise-sunset' });
+    this.route('index', { path: '/' });
+  });
+  this.route('homepage', { path: '/' });
 });
 
 export default Router;

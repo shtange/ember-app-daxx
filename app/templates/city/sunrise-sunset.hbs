@@ -1,0 +1,11 @@
+{{#link-to "city"}}
+  Back to Cities
+{{/link-to}}
+
+<h1>{{to-capitalize cityName}}</h1>
+<h3>Sunrise and Sunset</h3>
+
+{{#if sunriseSunset}}
+  <p>Sunrise: {{sunriseSunset.sunrise}}</p>
+  <p>Sunset: {{sunriseSunset.sunset}}</p>
+{{/if}}

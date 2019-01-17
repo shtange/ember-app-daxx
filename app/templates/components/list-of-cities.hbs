@@ -1,0 +1,16 @@
+{{#if cities}}
+  <div>
+    <h3>List of Cities</h3>
+    <p>Number of cities: {{cities.length}}</p>
+
+    <ul>
+      {{#each cities key="id" as |city|}}
+        <li>
+          {{#link-to "city.sunrise-sunset" city.name}}
+            {{to-capitalize city.name}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
