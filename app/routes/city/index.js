@@ -1,18 +1,16 @@
 import Route from '@ember/routing/route';
 import { run } from '@ember/runloop';
+import RSVP from 'rsvp';
 import $ from 'jquery';
 
 const OSM_API_URL = 'https://nominatim.openstreetmap.org/search';
 
 export default Route.extend({
-  setupController(controller, model) {
-    this._super(controller, model);
-
-    controller.set('cities', model);
-  },
-
   model() {
-    return this.store.peekAll('city');
+    return RSVP.hash({
+      cities: this.store.peekAll('city'),
+      newCity: {}
+    })
   },
 
   actions: {
@@ -43,9 +41,9 @@ export default Route.extend({
       });
     },
     addNewCity() {
-      const existCities = this.controller.get('cities');
+      const existCities = this.controller.get('model.cities');
       const existCityNames = existCities.map(city => city.get('name'));
-      const cityName = this.controller.get('model.cityName').toLowerCase();
+      const cityName = this.controller.get('model.newCity.name').toLowerCase();
 
       if (existCityNames.indexOf(cityName) !== -1) {
         alert('This City already exist.\nPlease, try again!');
