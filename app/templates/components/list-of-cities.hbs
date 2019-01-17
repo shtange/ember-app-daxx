@@ -9,6 +9,9 @@
           {{#link-to "city.sunrise-sunset" city.name}}
             {{to-capitalize city.name}}
           {{/link-to}}
+          {{#if city.sunriseSunset}}
+            <small>(&#x263C; {{city.sunriseSunset.sunrise}} - &#x263E; {{city.sunriseSunset.sunset}})</small>
+          {{/if}}
         </li>
       {{/each}}
     </ul>

@@ -13,8 +13,8 @@
 
 <form class="form-add-city" {{action "addNewCity" on="submit"}}>
   <div>
-    <label for="name" class="control-label">New City:</label>
-    {{input type="text" value=model.cityName required=true}}
+    <label for="cityName" class="control-label">New City:</label>
+    {{input id="cityName" type="text" value=model.cityName required=true}}
     <button type="submit">Add</button>
   </div>
 </form>

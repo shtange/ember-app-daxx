@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('sunrise-sunset', { path: '/:city_name/sunrise-sunset' });
     this.route('index', { path: '/' });
   });
+  this.route('array');
   this.route('homepage', { path: '/' });
 });
 
