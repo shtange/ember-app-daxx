@@ -17,10 +17,9 @@ module('Integration | Component | list-of-cities', function(hooks) {
     // Template block usage:
     await render(hbs`
       {{#list-of-cities}}
-        template block text
       {{/list-of-cities}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '');
   });
 });
