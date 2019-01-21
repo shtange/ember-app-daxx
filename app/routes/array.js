@@ -1,10 +1,5 @@
 import Route from '@ember/routing/route';
-
-const getRandomInt = (min, max) => {
-  let minValue = Math.ceil(min),
-      maxValue = Math.floor(max);
-  return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
-};
+import numberUtils from '../utils/number-utils';
 
 export default Route.extend({
   model() {
@@ -20,7 +15,7 @@ export default Route.extend({
     },
     generateResultValue(itemIndex) {
       const baseValue = parseInt(this.controller.get('model.baseValue'), 10);
-      const randomIntValue = getRandomInt(0, 2);
+      const randomIntValue = numberUtils.getRandomInt(0, 2);
 
       this.controller.set('outputResultValue', (baseValue + itemIndex + randomIntValue));
     }
