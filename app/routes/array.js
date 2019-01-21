@@ -7,17 +7,16 @@ export default Route.extend({
   },
 
   actions: {
-    generateButtonList() {
+    generateFunctionList() {
+      const baseValue = parseInt(this.controller.get('model.baseValue'), 10);
       const numberOfElements = parseInt(this.controller.get('model.numberOfElements'), 10);
 
-      this.controller.set('outputButtonList', Array(numberOfElements).fill(null));
-      this.controller.set('outputResultValue', null);
-    },
-    generateResultValue(itemIndex) {
-      const baseValue = parseInt(this.controller.get('model.baseValue'), 10);
-      const randomIntValue = numberUtils.getRandomInt(0, 2);
+      const newFunction = (funcIndex) => {
+        this.controller.set('outputResultValue', (baseValue + funcIndex + numberUtils.getRandomInt(0, 2)));
+      };
 
-      this.controller.set('outputResultValue', (baseValue + itemIndex + randomIntValue));
+      this.controller.set('outputFunctionList', Array(numberOfElements).fill(null).map((item, index) => newFunction.bind(null, index)));
+      this.controller.set('outputResultValue', null);
     }
   }
 });

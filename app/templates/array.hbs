@@ -2,7 +2,7 @@
   Back to Home
 {{/link-to}}
 
-<form class="form-modify-array" {{action "generateButtonList" on="submit"}}>
+<form class="form-modify-array" {{action "generateFunctionList" on="submit"}}>
   <div>
     <label for="baseValue" class="control-label">Base Value:</label>
     {{input id="baseValue" type="number" min="0" max="100" value=model.baseValue required=true}}
@@ -16,13 +16,13 @@
   </div>
 </form>
 
-{{#if outputButtonList.length}}
-  <h3>Button List</h3>
+{{#if outputFunctionList.length}}
+  <h3>Function List</h3>
 
   <ul>
-    {{#each outputButtonList as |value key|}}
+    {{#each outputFunctionList as |func key|}}
       <li>
-        <button type="button" {{action "generateResultValue" key}}>Function{{key}}</button>
+        <button type="button" {{action func}}>Function{{key}}</button>
       </li>
     {{/each}}
   </ul>
