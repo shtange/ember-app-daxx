@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 import RSVP from 'rsvp';
-import $ from 'jquery';
-
-const OSM_API_URL = 'https://nominatim.openstreetmap.org/search';
 
 export default Route.extend({
+  api: service('api'),
+
   model() {
     return RSVP.hash({
       cities: this.store.peekAll('city'),
@@ -50,7 +50,7 @@ export default Route.extend({
         return false;
       }
 
-      $.getJSON(`${OSM_API_URL}?city=${cityName}&format=json`).then(data => {
+      this.get('api').getCityByName(cityName).then(data => {
         const places = (data || []).filter(place => place.type === 'city');
 
         if (!places.length) {

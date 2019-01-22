@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
-import $ from 'jquery';
-
-const SUNRISE_SUNSET_API_URL = 'https://api.sunrise-sunset.org/json';
 
 export default Route.extend({
+  api: service('api'),
+
   setupController(controller, model) {
     this._super(controller, model);
 
@@ -21,7 +21,7 @@ export default Route.extend({
     if (!sunriseSunset.content) {
       const existSunriseSunsetRecords = this.store.peekAll('sunrise-sunset');
 
-      $.getJSON(`${SUNRISE_SUNSET_API_URL}?lat=${currentCity.get('latitude')}&lng=${currentCity.get('longitude')}&date=today`).then(data => {
+      this.get('api').getSunriseSunsetInfoByCoords(currentCity.get('latitude'), currentCity.get('longitude')).then(data => {
         if (!data.results) {
           return false;
         }
